@@ -71,21 +71,31 @@ class ViewController: UIViewController {
 
     private func updateDisplay() {
 
-        if let result = brain.result {
+        let evaluation = brain.evaluate(using: variablesValues)
+
+        if let result = evaluation.result {
             displayValue = result
         }
+        history.text = evaluation.description +
+            (evaluation.isPending ? " ..." : " =")
 
-        history.text = brain.description +
-            (brain.resultIsPending ? " ..." : " =")
+        /*
+         if let result = brain.result {
+         displayValue = result
+         }
 
-        if brain.description.isEmpty && brain.result == nil {
-            history.text = ""
-            displayValue = 0
-        }
+         history.text = brain.description +
+         (brain.resultIsPending ? " ..." : " =")
+
+         if brain.description.isEmpty && brain.result == nil {
+         history.text = ""
+         displayValue = 0
+         }*/
     }
 
     @IBAction func pushVariable(_ sender: UIButton) {
-
+        brain.setOperand(variable: sender.currentTitle!)
+        updateDisplay()
     }
 
     @IBAction func setVariable(_ sender: UIButton) {
