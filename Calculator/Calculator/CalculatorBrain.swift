@@ -11,7 +11,6 @@ import Foundation
 
 struct CalculatorBrain {
 
-    // private var accumulator: Double?
     private let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -170,7 +169,6 @@ struct CalculatorBrain {
             "Random": Operation.nullary(Double.random(), "rand()")
     ]
 
-    // private var operationDescription: String = ""
     @available(iOS, deprecated, message: "Not supported")
     var description: String {
         return evaluate().description
