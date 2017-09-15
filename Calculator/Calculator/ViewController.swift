@@ -34,7 +34,7 @@ class ViewController: UIViewController {
             return Double(display.text!)!
         }
         set {
-            display.text = String(newValue)
+            display.text = String(format: "%g", newValue)
         }
     }
 
@@ -104,6 +104,7 @@ class ViewController: UIViewController {
             String((sender.currentTitle!).characters.dropFirst())
 
         variablesValues[variableSymbol] = displayValue
+        updateDisplay()
 
     }
 }

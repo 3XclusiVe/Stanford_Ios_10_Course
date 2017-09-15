@@ -69,11 +69,11 @@
                                                             <color key="titleShadowColor" red="0.036019656807184219" green="0.02132180891931057" blue="0.027731163427233696" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="performOPeration:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZJF-jO-oB6"/>
+                                                            <action selector="performOPeration:" destination="BYZ-38-t0r" eventType="touchUpInside" id="A1p-TE-UGQ"/>
                                                             <action selector="pushVariable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="an5-hE-sYj"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ucc-g1-bLf" userLabel="x^2">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ucc-g1-bLf">
                                                         <rect key="frame" x="144.5" y="0.0" width="71.5" height="64.5"/>
                                                         <color key="backgroundColor" red="0.90488779539999997" green="0.43712839479999999" blue="0.1794742644" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -83,7 +83,6 @@
                                                             <color key="titleShadowColor" red="0.036019656807184219" green="0.02132180891931057" blue="0.027731163427233696" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="performOPeration:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lw5-7T-Tr6"/>
                                                             <action selector="setVariable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n6C-Ju-iJ9"/>
                                                         </connections>
                                                     </button>
