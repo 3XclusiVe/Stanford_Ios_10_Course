@@ -29,12 +29,16 @@ class ViewController: UIViewController {
         }
     }
 
-    var displayValue: Double {
+    var displayValue: Double? {
         get {
             return Double(display.text!)!
         }
         set {
-            display.text = String(format: "%g", newValue)
+            if newValue == nil {
+                display.text = " "
+            } else {
+                display.text = String(format: "%g", newValue!)
+            }
         }
     }
 
@@ -43,7 +47,7 @@ class ViewController: UIViewController {
 
     @IBAction func performOPeration(_ sender: UIButton) {
         if userInTheMiddleOfTyping {
-            brain.setOperand(displayValue)
+            brain.setOperand(displayValue!)
             userInTheMiddleOfTyping = false
         }
         if let mathematicalSymbol = sender.currentTitle {
@@ -54,6 +58,7 @@ class ViewController: UIViewController {
 
     @IBAction func clearDisplay(_: UIButton) {
         brain.clearAll()
+        variablesValues.removeAll()
         updateDisplay()
     }
 
@@ -63,7 +68,7 @@ class ViewController: UIViewController {
             let formatter = NumberFormatter()
             formatter.minimumFractionDigits = 0
             formatter.maximumFractionDigits = 2
-            var displayString = formatter.string(from: NSNumber(value: displayValue))
+            var displayString = formatter.string(from: NSNumber(value: displayValue!))
             displayString!.remove(at: (displayString?.startIndex)!)
             displayValue = Double(displayString ?? "0") ?? 0
         }
@@ -75,9 +80,15 @@ class ViewController: UIViewController {
 
         if let result = evaluation.result {
             displayValue = result
+        } else {
+            displayValue = nil
         }
-        history.text = evaluation.description +
-            (evaluation.isPending ? " ..." : " =")
+        if let history = evaluation.description {
+            self.history.text = history +
+                (evaluation.isPending ? " ..." : " =")
+        } else {
+            history.text = ""
+        }
 
         /*
          if let result = brain.result {

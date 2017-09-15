@@ -49,18 +49,18 @@ struct CalculatorBrain {
     }
 
     func evaluate(using variables: Dictionary<String, Double>? = nil) ->
-        (result: Double?, isPending: Bool, description: String, error: String?) {
+        (result: Double?, isPending: Bool, description: String?, error: String?) {
 
             var accumulator: Double?
             var operationDescription: String?
             var pendingBinaryOperation: PendingBinaryOperation?
 
-            var description: String {
+            var description: String? {
                 if let binaryOperation = pendingBinaryOperation {
                     return binaryOperation.descriptionFunction(binaryOperation.firstOperandDescription,
                                                                operationDescription!)
                 } else {
-                    return operationDescription!
+                    return operationDescription
                 }
             }
 
@@ -130,7 +130,7 @@ struct CalculatorBrain {
                 pendingBinaryOperation = nil
             }
 
-            guard !operationStack.isEmpty else { return (nil, false, " ", nil) }
+            guard !operationStack.isEmpty else { return (nil, false, nil, nil) }
             pendingBinaryOperation = nil
             for operation in operationStack {
                 switch operation {
@@ -171,7 +171,7 @@ struct CalculatorBrain {
 
     @available(iOS, deprecated, message: "Not supported")
     var description: String {
-        return evaluate().description
+        return evaluate().description!
     }
 
     mutating func performOperation(_ symbol: String) {
@@ -204,9 +204,7 @@ struct CalculatorBrain {
     }
 
     mutating func clearAll() {
-        // operationDescription = ""
-        // accumulator = nil
-        // pendingBinaryOperation = nil
+        operationStack.removeAll()
     }
 }
 
