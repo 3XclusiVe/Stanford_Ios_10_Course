@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
     @IBOutlet weak var history: UILabel!
+    @IBOutlet weak var variableDisply: UILabel!
 
     var userInTheMiddleOfTyping = false
 
@@ -32,6 +33,19 @@ class ViewController: UIViewController {
     var displayValue: Double? {
         get {
             return Double(display.text!)!
+        }
+        set {
+            if newValue == nil {
+                display.text = " "
+            } else {
+                display.text = String(format: "%g", newValue!)
+            }
+        }
+    }
+
+    var currentVariableValue: Double? {
+        get {
+            return Double(variableDisply.text!)!
         }
         set {
             if newValue == nil {
@@ -90,18 +104,7 @@ class ViewController: UIViewController {
             history.text = ""
         }
 
-        /*
-         if let result = brain.result {
-         displayValue = result
-         }
-
-         history.text = brain.description +
-         (brain.resultIsPending ? " ..." : " =")
-
-         if brain.description.isEmpty && brain.result == nil {
-         history.text = ""
-         displayValue = 0
-         }*/
+        currentVariableValue = variablesValues["M"]
     }
 
     @IBAction func pushVariable(_ sender: UIButton) {
