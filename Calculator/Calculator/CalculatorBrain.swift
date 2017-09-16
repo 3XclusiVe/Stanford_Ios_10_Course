@@ -65,7 +65,11 @@ struct CalculatorBrain {
             }
 
             var result: Double? {
-                return accumulator
+                if (pendingBinaryOperation != nil) && accumulator == nil {
+                    return pendingBinaryOperation!.firstOperand
+                } else {
+                    return accumulator
+                }
             }
 
             var resultIsPending: Bool {

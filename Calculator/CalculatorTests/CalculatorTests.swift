@@ -111,7 +111,6 @@ class CalculatorBrainTests: XCTestCase {
         testBrain.performOperation("+")
         XCTAssertEqual(testBrain.evaluate().description, "7+")
         XCTAssertTrue(testBrain.evaluate().isPending)
-        XCTAssertFalse(testBrain.evaluate().result != nil)
 
         // b. 7 + 9 would show “7 + ...” (9 in the display)
         // no operation button touched, so operand is not send to model

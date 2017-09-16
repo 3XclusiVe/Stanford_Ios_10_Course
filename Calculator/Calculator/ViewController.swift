@@ -15,6 +15,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var history: UILabel!
     @IBOutlet weak var variableDisply: UILabel!
 
+    private let formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 6
+        formatter.numberStyle = .decimal
+        formatter.notANumberSymbol = ""
+        formatter.locale = Locale.current
+        return formatter
+    }()
+
     var userInTheMiddleOfTyping = false
 
     @IBAction func touchDigit(_ sender: UIButton) {
@@ -38,7 +48,7 @@ class ViewController: UIViewController {
             if newValue == nil {
                 display.text = " "
             } else {
-                display.text = String(format: "%g", newValue!)
+                display.text = formatter.string(from: NSNumber(value: newValue!))
             }
         }
     }
@@ -49,9 +59,9 @@ class ViewController: UIViewController {
         }
         set {
             if newValue == nil {
-                display.text = " "
+                variableDisply.text = " "
             } else {
-                display.text = String(format: "%g", newValue!)
+                variableDisply.text = formatter.string(from: NSNumber(value: newValue!))
             }
         }
     }
