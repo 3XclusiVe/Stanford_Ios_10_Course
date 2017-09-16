@@ -48,6 +48,12 @@ struct CalculatorBrain {
         operationStack.append(OperationStack.operation(symbol))
     }
 
+    mutating func undo() {
+        if(!operationStack.isEmpty) {
+            operationStack.removeLast()
+        }
+    }
+
     func evaluate(using variables: Dictionary<String, Double>? = nil) ->
         (result: Double?, isPending: Bool, description: String?, error: String?) {
 

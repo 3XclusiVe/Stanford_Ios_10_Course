@@ -8,7 +8,7 @@
 //
 
 import UIKit
-// TODO: убрать баг после нажатия C и ввода числа
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
@@ -87,14 +87,13 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onTapBackspace(_: UIButton) {
-        // TODO: добавить инициализацию форматтера в класс использовать для вывода на дисплей
         if userInTheMiddleOfTyping {
-            let formatter = NumberFormatter()
-            formatter.minimumFractionDigits = 0
-            formatter.maximumFractionDigits = 2
             var displayString = formatter.string(from: NSNumber(value: displayValue!))
             displayString!.remove(at: (displayString?.startIndex)!)
             displayValue = Double(displayString ?? "0") ?? 0
+        } else {
+            brain.undo()
+            updateDisplay()
         }
     }
 
