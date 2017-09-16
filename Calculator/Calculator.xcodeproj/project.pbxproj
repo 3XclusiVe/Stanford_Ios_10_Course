@@ -10,6 +10,24 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
+		<key>CE1E501A1F6D71BB0085F52A</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>image.png</string>
+			<key>path</key>
+			<string>launch_screen.png</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CE1E501B1F6D71BB0085F52A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CE1E501A1F6D71BB0085F52A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>CE68A68C1F63F130003F79FC</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -605,6 +623,7 @@ fi
 			<array>
 				<string>E4448DB91E53281D00B45C56</string>
 				<string>E4448DB61E53281D00B45C56</string>
+				<string>CE1E501B1F6D71BB0085F52A</string>
 				<string>E4448DB41E53281D00B45C56</string>
 			</array>
 			<key>isa</key>
@@ -1062,6 +1081,7 @@ fi
 				<string>E4448DB51E53281D00B45C56</string>
 				<string>E4448DBA1E53281D00B45C56</string>
 				<string>E4448DB71E53281D00B45C56</string>
+				<string>CE1E501A1F6D71BB0085F52A</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
