@@ -141,7 +141,7 @@
                                                             <action selector="performOPeration:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Or8-Fa-50h"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L16-Q3-YOs" userLabel="x^2">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L16-Q3-YOs">
                                                         <rect key="frame" x="144.5" y="0.0" width="71.5" height="64.5"/>
                                                         <color key="backgroundColor" red="0.90488779539999997" green="0.43712839479999999" blue="0.1794742644" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>

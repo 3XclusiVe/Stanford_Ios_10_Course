@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         formatter.maximumFractionDigits = 6
         formatter.numberStyle = .decimal
         formatter.notANumberSymbol = ""
+        formatter.groupingSeparator = " "
         formatter.locale = Locale.current
         return formatter
     }()
@@ -88,9 +89,14 @@ class ViewController: UIViewController {
 
     @IBAction func onTapBackspace(_: UIButton) {
         if userInTheMiddleOfTyping {
-            var displayString = formatter.string(from: NSNumber(value: displayValue!))
-            displayString!.remove(at: (displayString?.startIndex)!)
-            displayValue = Double(displayString ?? "0") ?? 0
+
+            guard !display.text!.isEmpty else { return }
+            display.text = String (display.text!.characters.dropLast())
+            if display.text!.isEmpty {
+                userInTheMiddleOfTyping = false
+                updateDisplay()
+            }
+
         } else {
             brain.undo()
             updateDisplay()
