@@ -119,6 +119,10 @@ class ViewController: UIViewController {
             history.text = ""
         }
 
+        if let error = evaluation.error {
+            display.text = error
+        }
+
         currentVariableValue = variablesValues["M"]
     }
 
