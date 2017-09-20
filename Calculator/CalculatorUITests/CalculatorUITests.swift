@@ -321,7 +321,6 @@ class CalculatorUITests: XCTestCase {
     }
 
     func testErrorsWhileOperation() {
-
         let app = XCUIApplication()
         app.buttons["7"].tap()
         app.buttons["±"].tap()
@@ -336,6 +335,35 @@ class CalculatorUITests: XCTestCase {
         app.buttons["="].tap()
         XCTAssert(app.staticTexts["деление на ноль"].exists)
         XCTAssert(app.staticTexts["7/0 ="].exists)
+    }
+    func testNoCrashesWhileBadOperations() {
+
+        let app = XCUIApplication()
+        app.buttons["="].tap()
+        app.buttons["±"].tap()
+        app.buttons["cos"].tap()
+        app.buttons["√"].tap()
+        app.buttons["+"].tap()
+        app.buttons["-"].tap()
+        app.buttons["÷"].tap()
+        app.buttons["×"].tap()
+        app.buttons["sin"].tap()
+        app.buttons["x^3"].tap()
+        app.buttons["x^2"].tap()
+        app.buttons["→M"].tap()
+        app.buttons["⌦"].tap()
+        app.buttons["C"].tap()
+
+        let app = XCUIApplication()
+        app.buttons["C"].tap()
+        app.buttons["."].tap()
+        app.buttons["="].tap()
+        app.buttons["."].tap()
+        app.buttons["±"].tap()
+        app.buttons["."].tap()
+        app.buttons["."].tap()
+        app.buttons["√"].tap()
+        app.buttons["."].tap()
 
     }
 }
