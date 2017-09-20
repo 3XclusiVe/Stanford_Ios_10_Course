@@ -43,7 +43,7 @@ class ViewController: UIViewController {
 
     var displayValue: Double? {
         get {
-            return Double(display.text!)!
+            return Double(display.text!)
         }
         set {
             if newValue == nil {
@@ -72,7 +72,9 @@ class ViewController: UIViewController {
 
     @IBAction func performOPeration(_ sender: UIButton) {
         if userInTheMiddleOfTyping {
-            brain.setOperand(displayValue!)
+            if(displayValue != nil) {
+                brain.setOperand(displayValue!)
+            }
             userInTheMiddleOfTyping = false
         }
         if let mathematicalSymbol = sender.currentTitle {

@@ -202,7 +202,7 @@ class CalculatorUITests: XCTestCase {
         XCTAssert(app.staticTexts["3.27"].exists)
     }
 
-    func testClearButtonTask8() {
+    func testClearButton() {
         let app = XCUIApplication()
 
         // check state
@@ -317,6 +317,25 @@ class CalculatorUITests: XCTestCase {
         app.buttons["⌦"].tap()
         XCTAssert(app.staticTexts["cos(M) ="].exists)
         XCTAssert(app.staticTexts["-1"].exists)
+
+    }
+
+    func testErrorsWhileOperation() {
+
+        let app = XCUIApplication()
+        app.buttons["7"].tap()
+        app.buttons["±"].tap()
+        app.buttons["√"].tap()
+        XCTAssert(app.staticTexts["√ отриц. числа"].exists)
+        XCTAssert(app.staticTexts["√(±(7)) ="].exists)
+
+        app.buttons["C"].tap()
+        app.buttons["7"].tap()
+        app.buttons["÷"].tap()
+        app.buttons["0"].tap()
+        app.buttons["="].tap()
+        XCTAssert(app.staticTexts["деление на ноль"].exists)
+        XCTAssert(app.staticTexts["7/0 ="].exists)
 
     }
 }

@@ -105,8 +105,9 @@ struct CalculatorBrain {
                         operationDescription = symbol
                         break
                     case let .unaryOperation(function, descriptionFunction, errorHandler):
-                        perform(unaryOperation: function, validator: errorHandler)
-                        operationDescription = descriptionFunction((operationDescription!))
+                        perform(unaryOperation: function,
+                                descriptionFunction: descriptionFunction,
+                                validator: errorHandler)
                         break
                     case let .binaryOperation(function, descriptionFunction, errorHandler):
                         performPendingBinaryOperation()
@@ -119,10 +120,13 @@ struct CalculatorBrain {
                 }
             }
 
-            func perform(unaryOperation: (Double) -> Double, validator: (((Double) -> (String?))?)) {
+            func perform(unaryOperation: (Double) -> Double,
+                         descriptionFunction: (String) -> String,
+                         validator: (((Double) -> (String?))?)) {
                 guard accumulator != nil else { return }
                 error = validator?(accumulator!)
                 accumulator = unaryOperation(accumulator!)
+                operationDescription = descriptionFunction((operationDescription!))
             }
 
             func pending(binaryOperation: @escaping (Double, Double) -> Double,
