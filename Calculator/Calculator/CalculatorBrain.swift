@@ -169,6 +169,12 @@ struct CalculatorBrain {
                 }
             }
 
+            if(accumulator != nil) {
+                if(((accumulator!.isNaN)) && (error == nil)) {
+                    error = "Не число"
+                }
+            }
+
             return (result, resultIsPending, description, error)
     }
 

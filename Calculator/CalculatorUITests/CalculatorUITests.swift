@@ -354,7 +354,6 @@ class CalculatorUITests: XCTestCase {
         app.buttons["⌦"].tap()
         app.buttons["C"].tap()
 
-        let app = XCUIApplication()
         app.buttons["C"].tap()
         app.buttons["."].tap()
         app.buttons["="].tap()
@@ -364,6 +363,5 @@ class CalculatorUITests: XCTestCase {
         app.buttons["."].tap()
         app.buttons["√"].tap()
         app.buttons["."].tap()
-
     }
 }
