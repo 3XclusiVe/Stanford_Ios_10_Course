@@ -28,6 +28,46 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>CE1E501C1F73AC0C0085F52A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>GraphView.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CE1E501D1F73AC0C0085F52A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CE1E501C1F73AC0C0085F52A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>CE1E501E1F73ACA40085F52A</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AxesDrawer.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CE1E501F1F73ACA40085F52A</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CE1E501E1F73ACA40085F52A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>CE68A68C1F63F130003F79FC</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -597,7 +637,9 @@ fi
 			<array>
 				<string>E42BAC161E6356FF0005C63C</string>
 				<string>E4448DB11E53281D00B45C56</string>
+				<string>CE1E501F1F73ACA40085F52A</string>
 				<string>E4448DAF1E53281D00B45C56</string>
+				<string>CE1E501D1F73AC0C0085F52A</string>
 			</array>
 			<key>isa</key>
 			<string>PBXSourcesBuildPhase</string>
@@ -690,7 +732,9 @@ fi
 			<key>children</key>
 			<array>
 				<string>E4448DC01E53284E00B45C56</string>
+				<string>CE1E501E1F73ACA40085F52A</string>
 				<string>E42BAC151E6356FF0005C63C</string>
+				<string>CE1E501C1F73AC0C0085F52A</string>
 				<string>E4448DB21E53281D00B45C56</string>
 				<string>E4448DB01E53281D00B45C56</string>
 			</array>
