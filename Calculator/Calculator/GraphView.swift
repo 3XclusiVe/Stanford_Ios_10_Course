@@ -17,10 +17,10 @@ class GraphView: UIView {
     var minimumPointsPerHashmark: CGFloat = 40 {didSet {setNeedsDisplay()}}
 
     @IBInspectable
-    var axesColor: UIColor = UIColor.blue {didSet {setNeedsDisplay()}}
+    var pointsPerUnit: CGFloat = 50 {didSet {setNeedsDisplay()}}
 
     @IBInspectable
-    var pointsPerUnit: CGFloat = 1 {didSet {setNeedsDisplay()}}
+    var axesColor: UIColor = UIColor.blue {didSet {setNeedsDisplay()}}
 
     override func draw(_ rect: CGRect) {
 
@@ -32,7 +32,8 @@ class GraphView: UIView {
                             origin: origin,
                             pointsPerUnit: pointsPerUnit)
 
-        drawFunctionGraph(inRectangle: rect, fromOrigin: origin, withScale: 1)
+        drawFunctionGraph(inRectangle: rect, fromOrigin: origin, withScale: pointsPerUnit)
+        print(String(describing: self.bounds))
     }
 
     private var axesDrawer = AxesDrawer()
@@ -46,7 +47,7 @@ class GraphView: UIView {
         }
 
         let path = UIBezierPath()
-        var isFirstPoint = false
+        var isFirstPoint = true
 
         func fromUnitToXValue(_ unit: CGFloat) -> Double {
             return Double((unit - origin.x) / scale)
@@ -76,11 +77,13 @@ class GraphView: UIView {
             let point = CGPoint(x:xUnit, y:yUnit)
 
             addToPath(point)
+            print(String(describing: point))
         }
 
         UIColor.black.setStroke()
         path.lineWidth = 3.0
         path.stroke()
+        print(String(describing: path.bounds))
     }
 
 }
