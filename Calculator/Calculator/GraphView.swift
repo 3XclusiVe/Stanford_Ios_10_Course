@@ -11,7 +11,7 @@ import UIKit
 @IBDesignable
 class GraphView: UIView {
 
-    var function: ((Double) -> Double)? {didSet {setNeedsDisplay()}}
+    var function: ((Double) -> Double)? = {sin($0) / cos($0)} {didSet {setNeedsDisplay()}}
 
     @IBInspectable
     var minimumPointsPerHashmark: CGFloat = 40 {didSet {setNeedsDisplay()}}
@@ -21,6 +21,12 @@ class GraphView: UIView {
 
     @IBInspectable
     var axesColor: UIColor = UIColor.blue {didSet {setNeedsDisplay()}}
+
+    @IBInspectable
+    var lineWidth: CGFloat = 3 {didSet {setNeedsDisplay()}}
+
+    @IBInspectable
+    var lineColor: UIColor = UIColor.black {didSet {setNeedsDisplay()}}
 
     override func draw(_ rect: CGRect) {
 
@@ -33,7 +39,6 @@ class GraphView: UIView {
                             pointsPerUnit: pointsPerUnit)
 
         drawFunctionGraph(inRectangle: rect, fromOrigin: origin, withScale: pointsPerUnit)
-        print(String(describing: self.bounds))
     }
 
     private var axesDrawer = AxesDrawer()
@@ -48,6 +53,13 @@ class GraphView: UIView {
 
         let path = UIBezierPath()
         var isFirstPoint = true
+        var currentYUnit: CGFloat = 0.0
+        var lastYUnit: CGFloat = 0.0
+
+        func isAsymptote() -> Bool {
+            return abs(lastYUnit - currentYUnit) >
+                max(bounds.width * 1.5, bounds.height * 1.5)
+        }
 
         func fromUnitToXValue(_ unit: CGFloat) -> Double {
             return Double((unit - origin.x) / scale)
@@ -62,7 +74,12 @@ class GraphView: UIView {
                 path.move(to: point)
                 isFirstPoint = false
             } else {
-                path.addLine(to: point)
+                if(isAsymptote()) {
+                    isFirstPoint = true
+                    path.move(to: point)
+                } else {
+                    path.addLine(to: point)
+                }
             }
         }
 
@@ -72,18 +89,20 @@ class GraphView: UIView {
             let xUnit = CGFloat (xPixel) / contentScaleFactor
             let x = fromUnitToXValue(xUnit)
             let y = function!(x)
+
+            guard (y.isFinite) else {continue}
+
             let yUnit = fromYValueToUnit(y)
+            lastYUnit = currentYUnit
+            currentYUnit = yUnit
 
             let point = CGPoint(x:xUnit, y:yUnit)
-
             addToPath(point)
-            print(String(describing: point))
         }
 
-        UIColor.black.setStroke()
-        path.lineWidth = 3.0
+        self.lineColor.setStroke()
+        path.lineWidth = self.lineWidth
         path.stroke()
-        print(String(describing: path.bounds))
     }
 
 }
