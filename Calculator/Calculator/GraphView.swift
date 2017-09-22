@@ -17,7 +17,7 @@ class GraphView: UIView {
     var minimumPointsPerHashmark: CGFloat = 40 {didSet {setNeedsDisplay()}}
 
     @IBInspectable
-    var pointsPerUnit: CGFloat = 50 {didSet {setNeedsDisplay()}}
+    var scale: CGFloat = 50 {didSet {setNeedsDisplay()}}
 
     @IBInspectable
     var axesColor: UIColor = UIColor.blue {didSet {setNeedsDisplay()}}
@@ -28,17 +28,26 @@ class GraphView: UIView {
     @IBInspectable
     var lineColor: UIColor = UIColor.black {didSet {setNeedsDisplay()}}
 
+    var origin: CGPoint? {
+        get {
+            return CGPoint(x: self.bounds.midX, y:self.bounds.midY)
+        }
+        set {
+            self.origin = newValue
+        }
+    }
+
     override func draw(_ rect: CGRect) {
 
-        let origin = CGPoint(x: self.bounds.midX, y:self.bounds.midY)
+        let origin = self.origin
         axesDrawer.color = axesColor
         axesDrawer.contentScaleFactor = contentScaleFactor
         axesDrawer.minimumPointsPerHashmark = minimumPointsPerHashmark
         axesDrawer.drawAxes(in: bounds,
-                            origin: origin,
-                            pointsPerUnit: pointsPerUnit)
+                            origin: origin!,
+                            pointsPerUnit: scale)
 
-        drawFunctionGraph(inRectangle: rect, fromOrigin: origin, withScale: pointsPerUnit)
+        drawFunctionGraph(inRectangle: rect, fromOrigin: origin!, withScale: scale)
     }
 
     private var axesDrawer = AxesDrawer()

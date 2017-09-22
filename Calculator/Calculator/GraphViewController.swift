@@ -12,9 +12,24 @@ class GraphViewController: UIViewController {
 
     var function: ((Double) -> Double)? {didSet {updateUI()}}
 
-    @IBOutlet weak var graphView: GraphView!
+    @IBOutlet weak var graphView: GraphView! {
+        didSet {
+            let panGestureRecognizer = UIPanGestureRecognizer(
+                target: self, action: #selector(updateUI))
+            graphView.addGestureRecognizer(panGestureRecognizer)
 
-    private func updateUI() {
+            let pinchGestureRecognizer = UIPinchGestureRecognizer(
+                target: self, action: #selector(updateUI))
+            graphView.addGestureRecognizer(pinchGestureRecognizer)
+
+            let tapGestureRecognizer = UITapGestureRecognizer(
+                target: self, action: #selector(updateUI))
+            tapGestureRecognizer.numberOfTouchesRequired = 2
+            graphView.addGestureRecognizer(tapGestureRecognizer)
+        }
+    }
+
+    @objc private func updateUI() {
         graphView.function = self.function
     }
 
