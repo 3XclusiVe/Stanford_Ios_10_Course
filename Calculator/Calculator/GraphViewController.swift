@@ -14,22 +14,23 @@ class GraphViewController: UIViewController {
 
     @IBOutlet weak var graphView: GraphView! {
         didSet {
-            let panGestureRecognizer = UIPanGestureRecognizer(
-                target: self, action: #selector(updateUI))
-            graphView.addGestureRecognizer(panGestureRecognizer)
+            /** let panGestureRecognizer = UIPanGestureRecognizer(
+             target: self, action: #selector(updateUI))
+             graphView.addGestureRecognizer(panGestureRecognizer)
 
-            let pinchGestureRecognizer = UIPinchGestureRecognizer(
-                target: self, action: #selector(updateUI))
-            graphView.addGestureRecognizer(pinchGestureRecognizer)
+             let pinchGestureRecognizer = UIPinchGestureRecognizer(
+             target: self, action: #selector(updateUI))
+             graphView.addGestureRecognizer(pinchGestureRecognizer)
 
-            let tapGestureRecognizer = UITapGestureRecognizer(
-                target: self, action: #selector(updateUI))
-            tapGestureRecognizer.numberOfTouchesRequired = 2
-            graphView.addGestureRecognizer(tapGestureRecognizer)
+             let tapGestureRecognizer = UITapGestureRecognizer(
+             target: self, action: #selector(updateUI))
+             tapGestureRecognizer.numberOfTouchesRequired = 2
+             graphView.addGestureRecognizer(tapGestureRecognizer)
+             **/
         }
     }
 
-    @objc private func updateUI() {
+    private func updateUI() {
         graphView.function = self.function
     }
 
