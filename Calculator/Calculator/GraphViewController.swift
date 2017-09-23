@@ -14,24 +14,55 @@ class GraphViewController: UIViewController {
 
     @IBOutlet weak var graphView: GraphView! {
         didSet {
-            /** let panGestureRecognizer = UIPanGestureRecognizer(
-             target: self, action: #selector(updateUI))
-             graphView.addGestureRecognizer(panGestureRecognizer)
+            let panGestureRecognizer = UIPanGestureRecognizer(
+                target: self, action: #selector(moveOrigin))
+            graphView.addGestureRecognizer(panGestureRecognizer)
 
-             let pinchGestureRecognizer = UIPinchGestureRecognizer(
-             target: self, action: #selector(updateUI))
-             graphView.addGestureRecognizer(pinchGestureRecognizer)
+            let doubleTapGestureRecognizer = UITapGestureRecognizer(
+                target: self, action: #selector(changeOrigin))
+            doubleTapGestureRecognizer.numberOfTapsRequired = 2
+            graphView.addGestureRecognizer(doubleTapGestureRecognizer)
 
-             let tapGestureRecognizer = UITapGestureRecognizer(
-             target: self, action: #selector(updateUI))
-             tapGestureRecognizer.numberOfTouchesRequired = 2
-             graphView.addGestureRecognizer(tapGestureRecognizer)
-             **/
+            let pinchGestureRecognizer = UIPinchGestureRecognizer(
+                target: self, action: #selector(changeScale))
+            graphView.addGestureRecognizer(pinchGestureRecognizer)
         }
     }
 
     private func updateUI() {
         graphView.function = self.function
+    }
+
+    @objc private func changeOrigin(byReactingTo gesture: UITapGestureRecognizer) {
+        if gesture.state == .ended {
+            graphView.origin = gesture.location(in: graphView)
+        }
+    }
+
+    @objc private func moveOrigin(byReactingTo gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .changed:
+            let direction = gesture.translation(in: graphView)
+            moveOriginTo(direction)
+            gesture.setTranslation(CGPoint.zero, in: graphView)
+        default:
+            break
+        }
+    }
+
+    @objc private func changeScale(byReactingTo gesture: UIPinchGestureRecognizer) {
+        switch gesture.state {
+        case .changed:
+            graphView.scale *= gesture.scale
+            gesture.scale = 1
+        default:
+            break
+        }
+    }
+
+    private func moveOriginTo(_ direction: CGPoint) {
+        graphView.origin = CGPoint(x: graphView.origin.x + direction.x,
+                                   y:graphView.origin.y + direction.y)
     }
 
     override func viewDidLoad() {

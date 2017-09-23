@@ -28,12 +28,15 @@ class GraphView: UIView {
     @IBInspectable
     var lineColor: UIColor = UIColor.black {didSet {setNeedsDisplay()}}
 
-    var origin: CGPoint? {
+    private var graphOrigin: CGPoint?
+
+    var origin: CGPoint {
         get {
-            return CGPoint(x: self.bounds.midX, y:self.bounds.midY)
+            return graphOrigin ?? CGPoint(x: self.bounds.midX, y:self.bounds.midY)
         }
         set {
-            self.origin = newValue
+            graphOrigin = newValue
+            setNeedsDisplay()
         }
     }
 
@@ -44,10 +47,10 @@ class GraphView: UIView {
         axesDrawer.contentScaleFactor = contentScaleFactor
         axesDrawer.minimumPointsPerHashmark = minimumPointsPerHashmark
         axesDrawer.drawAxes(in: bounds,
-                            origin: origin!,
+                            origin: origin,
                             pointsPerUnit: scale)
 
-        drawFunctionGraph(inRectangle: rect, fromOrigin: origin!, withScale: scale)
+        drawFunctionGraph(inRectangle: rect, fromOrigin: origin, withScale: scale)
     }
 
     private var axesDrawer = AxesDrawer()
