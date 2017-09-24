@@ -10,7 +10,7 @@ import UIKit
 
 class GraphViewController: UIViewController {
 
-    var function: ((Double) -> Double)? {didSet {updateUI()}}
+    var function: ((Double) -> Double)? { didSet { updateUI() } }
 
     @IBOutlet weak var graphView: GraphView! {
         didSet {
@@ -62,12 +62,12 @@ class GraphViewController: UIViewController {
 
     private func moveOriginTo(_ direction: CGPoint) {
         graphView.origin = CGPoint(x: graphView.origin.x + direction.x,
-                                   y:graphView.origin.y + direction.y)
+                                   y: graphView.origin.y + direction.y)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.function = {sin($0)}
+        self.function = { sin($0) }
         // Do any additional setup after loading the view.
     }
 

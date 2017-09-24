@@ -197,7 +197,7 @@ class CalculatorBrainTests: XCTestCase {
         XCTAssertEqual(testBrain.evaluate().description, "4×π")
         XCTAssertFalse(testBrain.evaluate().isPending)
         XCTAssertEqual(testBrain.evaluate().result!,
-                       12.5663706143592, accuracy:0.0001, file:#file, line: #line)
+                       12.5663706143592, accuracy: 0.0001, file: #file, line: #line)
 
     }
 }

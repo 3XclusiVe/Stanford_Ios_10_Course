@@ -11,28 +11,28 @@ import UIKit
 @IBDesignable
 class GraphView: UIView {
 
-    var function: ((Double) -> Double)? = {sin($0) / cos($0)} {didSet {setNeedsDisplay()}}
+    var function: ((Double) -> Double)? = { sin($0) / cos($0) } { didSet { setNeedsDisplay() } }
 
     @IBInspectable
-    var minimumPointsPerHashmark: CGFloat = 40 {didSet {setNeedsDisplay()}}
+    var minimumPointsPerHashmark: CGFloat = 40 { didSet { setNeedsDisplay() } }
 
     @IBInspectable
-    var scale: CGFloat = 50 {didSet {setNeedsDisplay()}}
+    var scale: CGFloat = 50 { didSet { setNeedsDisplay() } }
 
     @IBInspectable
-    var axesColor: UIColor = UIColor.blue {didSet {setNeedsDisplay()}}
+    var axesColor: UIColor = UIColor.blue { didSet { setNeedsDisplay() } }
 
     @IBInspectable
-    var lineWidth: CGFloat = 3 {didSet {setNeedsDisplay()}}
+    var lineWidth: CGFloat = 3 { didSet { setNeedsDisplay() } }
 
     @IBInspectable
-    var lineColor: UIColor = UIColor.black {didSet {setNeedsDisplay()}}
+    var lineColor: UIColor = UIColor.black { didSet { setNeedsDisplay() } }
 
     private var graphOrigin: CGPoint?
 
     var origin: CGPoint {
         get {
-            return graphOrigin ?? CGPoint(x: self.bounds.midX, y:self.bounds.midY)
+            return graphOrigin ?? CGPoint(x: self.bounds.midX, y: self.bounds.midY)
         }
         set {
             graphOrigin = newValue
@@ -102,13 +102,13 @@ class GraphView: UIView {
             let x = fromUnitToXValue(xUnit)
             let y = function!(x)
 
-            guard (y.isFinite) else {continue}
+            guard (y.isFinite) else { continue }
 
             let yUnit = fromYValueToUnit(y)
             lastYUnit = currentYUnit
             currentYUnit = yUnit
 
-            let point = CGPoint(x:xUnit, y:yUnit)
+            let point = CGPoint(x: xUnit, y: yUnit)
             addToPath(point)
         }
 

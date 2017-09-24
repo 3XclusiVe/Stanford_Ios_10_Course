@@ -11,8 +11,8 @@ import UIKit
 
 struct AxesDrawer {
     var color: UIColor
-    var contentScaleFactor: CGFloat             // set this from UIView's contentScaleFactor to position axes with maximum accuracy
-    var minimumPointsPerHashmark: CGFloat = 40  // public even though init doesn't accommodate setting it (it's rare to want to change it)
+    var contentScaleFactor: CGFloat // set this from UIView's contentScaleFactor to position axes with maximum accuracy
+    var minimumPointsPerHashmark: CGFloat = 40 // public even though init doesn't accommodate setting it (it's rare to want to change it)
 
     init(color: UIColor = UIColor.blue, contentScaleFactor: CGFloat = 1) {
         self.color = color
@@ -80,7 +80,7 @@ struct AxesDrawer {
 
             // radiate the bbox out until the hashmarks are further out than the rect
             while !bbox.contains(rect) {
-                let label = formatter.string(from: (origin.x-bbox.minX)/pointsPerUnit)!
+                let label = formatter.string(from: (origin.x - bbox.minX) / pointsPerUnit)!
                 if let leftHashmarkPoint = CGPoint(x: bbox.minX, y: origin.y).aligned(inside: rect, usingScaleFactor: contentScaleFactor) {
                     drawHashmark(at: leftHashmarkPoint, label: .top("-\(label)"))
                 }
@@ -108,8 +108,8 @@ struct AxesDrawer {
         }
 
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: location.x-dx, y: location.y-dy))
-        path.addLine(to: CGPoint(x: location.x+dx, y: location.y+dy))
+        path.move(to: CGPoint(x: location.x - dx, y: location.y - dy))
+        path.addLine(to: CGPoint(x: location.x + dx, y: location.y + dy))
         path.stroke()
 
         label.draw(at: location, usingColor: color)
@@ -171,6 +171,6 @@ private extension NumberFormatter {
 
 private extension CGRect {
     init(center: CGPoint, size: CGSize) {
-        self.init(x: center.x-size.width/2, y: center.y-size.height/2, width: size.width, height: size.height)
+        self.init(x: center.x - size.width / 2, y: center.y - size.height / 2, width: size.width, height: size.height)
     }
 }
