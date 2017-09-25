@@ -67,6 +67,11 @@ class CalculatorViewController: UIViewController, UISplitViewControllerDelegate 
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
     private var brain = CalculatorBrain()
     private var variablesValues = [String: Double]()
 
