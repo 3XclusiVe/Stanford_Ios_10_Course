@@ -9,7 +9,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CalculatorViewController: UIViewController {
 
     @IBOutlet weak var display: UILabel!
     @IBOutlet weak var history: UILabel!
@@ -140,6 +140,34 @@ class ViewController: UIViewController {
 
         variablesValues[variableSymbol] = displayValue
         updateDisplay()
+
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        var destination = segue.destination
+        if let navigationController = destination as? UINavigationController {
+            destination = navigationController.visibleViewController ?? destination
+        }
+
+        if let identifier = segue.identifier,
+            identifier == Storyboard.ShowGraph {
+            if let graphViewController = destination as? GraphViewController {
+                graphViewController.function = { [weak self = self](x) in
+                    self?.variablesValues["M"] = x
+                    let evaluation = self?.brain.evaluate(using: self?.variablesValues)
+                    return (evaluation?.result)!
+                }
+                if let description = brain.evaluate(using: variablesValues).description {
+                    navigationController?.title = "y=" + description
+                }
+            }
+        }
+    }
+
+    func shouldPerformSegue(withIdentifier identifier: String?,
+                            sender: Any?) {
 
     }
 }

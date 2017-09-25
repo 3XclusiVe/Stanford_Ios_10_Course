@@ -23,6 +23,10 @@
 			isa = PBXBuildFile;
 			fileRef = CE1E50201F74F90A0085F52A;
 		};
+		CE82AA9F1F78DF4600D170F1 = {
+			isa = PBXBuildFile;
+			fileRef = CE82AA9E1F78DF4600D170F1;
+		};
 		CE8A21291F65AB0E000C71A3 = {
 			isa = PBXBuildFile;
 			fileRef = CE8A21281F65AB0E000C71A3;
@@ -108,6 +112,12 @@
 			path = Config.xcconfig;
 			sourceTree = "<group>";
 		};
+		CE82AA9E1F78DF4600D170F1 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = Storyboard.swift;
+			sourceTree = "<group>";
+		};
 		CE8A21261F65AB0E000C71A3 = {
 			isa = PBXFileReference;
 			explicitFileType = wrapper.cfbundle;
@@ -169,7 +179,7 @@
 		E4448DB01E53281D00B45C56 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.swift;
-			path = ViewController.swift;
+			path = CalculatorViewController.swift;
 			sourceTree = "<group>";
 		};
 		E4448DB31E53281D00B45C56 = {
@@ -270,10 +280,11 @@
 				E4448DC01E53284E00B45C56,
 				CE1E501E1F73ACA40085F52A,
 				E42BAC151E6356FF0005C63C,
+				E4448DB01E53281D00B45C56,
 				CE1E501C1F73AC0C0085F52A,
 				CE1E50201F74F90A0085F52A,
 				E4448DB21E53281D00B45C56,
-				E4448DB01E53281D00B45C56,
+				CE82AA9E1F78DF4600D170F1,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -467,6 +478,7 @@
 				E42BAC161E6356FF0005C63C,
 				E4448DB11E53281D00B45C56,
 				CE1E501F1F73ACA40085F52A,
+				CE82AA9F1F78DF4600D170F1,
 				CE1E50211F74F90A0085F52A,
 				E4448DAF1E53281D00B45C56,
 				CE1E501D1F73AC0C0085F52A,
