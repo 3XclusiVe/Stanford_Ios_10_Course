@@ -160,14 +160,18 @@ class CalculatorViewController: UIViewController {
                     return (evaluation?.result)!
                 }
                 if let description = brain.evaluate(using: variablesValues).description {
-                    navigationController?.title = "y=" + description
+                    graphViewController.navigationItem.title = "y=" + description
                 }
             }
         }
     }
 
-    func shouldPerformSegue(withIdentifier identifier: String?,
-                            sender: Any?) {
-
+    override func shouldPerformSegue(withIdentifier identifier: String?,
+                                     sender: Any?) -> Bool {
+        if identifier == Storyboard.ShowGraph,
+            brain.evaluate(using: variablesValues).isPending {
+            return false
+        }
+        return true
     }
 }
