@@ -364,4 +364,35 @@ class CalculatorUITests: XCTestCase {
         app.buttons["√"].tap()
         app.buttons["."].tap()
     }
+
+    func testUpdateGraphButton() {
+
+        let app = XCUIApplication()
+        XCTAssertFalse(app.buttons["𝑓"].isEnabled)
+        app.buttons["7"].tap()
+        XCTAssertFalse(app.buttons["𝑓"].isEnabled)
+        app.buttons["+"].tap()
+        XCTAssertFalse(app.buttons["𝑓"].isEnabled)
+        app.buttons["4"].tap()
+        XCTAssertFalse(app.buttons["𝑓"].isEnabled)
+        app.buttons["="].tap()
+        XCTAssertTrue(app.buttons["𝑓"].isEnabled)
+
+        app.buttons["-"].tap()
+        XCTAssertFalse(app.buttons["𝑓"].isEnabled)
+        app.buttons["1"].tap()
+        app.buttons["4"].tap()
+        XCTAssertFalse(app.buttons["𝑓"].isEnabled)
+        app.buttons["="].tap()
+        app.buttons["sin"].tap()
+        XCTAssertTrue(app.buttons["𝑓"].isEnabled)
+
+        app.buttons["√"].tap()
+        XCTAssertFalse(app.buttons["𝑓"].isEnabled)
+        app.buttons["√"].tap()
+        XCTAssertFalse(app.buttons["𝑓"].isEnabled)
+        app.buttons["√"].tap()
+        XCTAssertFalse(app.buttons["𝑓"].isEnabled)
+
+    }
 }

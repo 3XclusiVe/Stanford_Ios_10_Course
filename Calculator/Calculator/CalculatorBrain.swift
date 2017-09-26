@@ -169,8 +169,8 @@ struct CalculatorBrain {
                 }
             }
 
-            if(accumulator != nil) {
-                if(((accumulator!.isNaN)) && (error == nil)) {
+            if result != nil {
+                if result!.isNaN && error == nil {
                     error = "Не число"
                 }
             }

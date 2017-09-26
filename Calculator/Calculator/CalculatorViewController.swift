@@ -14,6 +14,11 @@ class CalculatorViewController: UIViewController, UISplitViewControllerDelegate 
     @IBOutlet weak var display: UILabel!
     @IBOutlet weak var history: UILabel!
     @IBOutlet weak var variableDisply: UILabel!
+    @IBOutlet weak var updateGraphButton: UIButton! {
+        didSet {
+            disableUpdateGraphButton()
+        }
+    }
 
     private let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -47,6 +52,8 @@ class CalculatorViewController: UIViewController, UISplitViewControllerDelegate 
         }
         set {
             if newValue == nil {
+                display.text = " "
+            } else if newValue!.isNaN {
                 display.text = " "
             } else {
                 display.text = formatter.string(from: NSNumber(value: newValue!))
@@ -123,11 +130,17 @@ class CalculatorViewController: UIViewController, UISplitViewControllerDelegate 
             self.history.text = history +
                 (evaluation.isPending ? " ..." : " =")
         } else {
-            history.text = ""
+            history.text = " "
         }
 
         if let error = evaluation.error {
             display.text = error
+        }
+
+        if evaluation.isPending || evaluation.result == nil || evaluation.error != nil {
+            disableUpdateGraphButton()
+        } else {
+            enableUpdateGraphButton()
         }
 
         currentVariableValue = variablesValues["M"]
@@ -189,5 +202,15 @@ class CalculatorViewController: UIViewController, UISplitViewControllerDelegate 
                              collapseSecondary secondaryViewController: UIViewController,
                              onto primaryViewController: UIViewController) -> Bool {
         return true
+    }
+
+    private func disableUpdateGraphButton() {
+        updateGraphButton.isEnabled = false
+        updateGraphButton.setTitleColor(UIColor.darkGray, for: UIControlState.normal)
+    }
+
+    private func enableUpdateGraphButton() {
+        updateGraphButton.isEnabled = true
+        updateGraphButton.setTitleColor(UIColor.white, for: UIControlState.normal)
     }
 }
