@@ -48,7 +48,9 @@ class CalculatorViewController: UIViewController, UISplitViewControllerDelegate 
 
     var displayValue: Double? {
         get {
-            return Double(display.text!)
+            guard display.text != nil else {return nil}
+            guard formatter.number(from: display.text!) != nil else {return nil}
+            return Double(truncating: formatter.number(from: display.text!)!)
         }
         set {
             if newValue == nil {
@@ -103,14 +105,12 @@ class CalculatorViewController: UIViewController, UISplitViewControllerDelegate 
 
     @IBAction func onTapBackspace(_: UIButton) {
         if userInTheMiddleOfTyping {
-
             guard !display.text!.isEmpty else { return }
             display.text = String (display.text!.characters.dropLast())
             if display.text!.isEmpty {
                 userInTheMiddleOfTyping = false
                 updateDisplay()
             }
-
         } else {
             brain.undo()
             updateDisplay()

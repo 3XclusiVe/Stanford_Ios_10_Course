@@ -111,7 +111,9 @@ struct CalculatorBrain {
                         break
                     case let .binaryOperation(function, descriptionFunction, errorHandler):
                         performPendingBinaryOperation()
-                        pending(binaryOperation: function, descriptionFunction: descriptionFunction, validator: errorHandler)
+                        pending(binaryOperation: function,
+                                descriptionFunction: descriptionFunction,
+                                validator: errorHandler)
                         break
                     case .equals:
                         performPendingBinaryOperation()
